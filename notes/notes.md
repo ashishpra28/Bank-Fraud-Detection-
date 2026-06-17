@@ -59,6 +59,9 @@ Include both Rule Based Approch + ML Based Approch
 2. This is an imbalanced class problem 
 - Dont considered Accuracy 
 - Focus on Presion and Recall 
+- Accuracy gives equal importance to both classes
+- But in Imbalanced data, one class is huge so majority class dominate other class.
+- Main focus will be on - Recall
 
 3. Here for this project we will use - ML Based Approch 
 - Machine Learning play a crucial role in detecting fraud in the banking and 
