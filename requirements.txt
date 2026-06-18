@@ -5,3 +5,6 @@ seaborn
 scikit-learn 
 ipykernel 
 xgboost
+streamlit 
+fastapi 
+uvicorn 
