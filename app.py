@@ -1,11 +1,12 @@
 # Import libraries
 import streamlit as st
 import requests
-import joblib
+import os
 
 # API 
-API_URL = "http://api:8000/predict"
+API_URL = os.getenv("API_URL")
 
+# Set config
 st.set_page_config(
     page_title="FraudShield",
     page_icon="🛡️",
