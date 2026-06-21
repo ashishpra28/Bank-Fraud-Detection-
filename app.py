@@ -4,32 +4,87 @@ import requests
 import joblib
 
 # API 
-API_URL = "http://127.0.0.1:8000/predict"
+API_URL = "http://api:8000/predict"
 
-# Page configuration
 st.set_page_config(
-    page_title="Bank Fraud Detection",
-    page_icon="🏦",
+    page_title="FraudShield",
+    page_icon="🛡️",
     layout="centered"
 )
 
-# Title
-st.title("🏦 Bank Fraud Detection System")
-
 st.markdown(
-    "Enter transaction details to predict whether the transaction is Fraud or Not."
+"""
+<h1 style='text-align:center;'>
+🛡️ FraudShield
+</h1>
+
+<p style='text-align:center;
+font-size:20px;
+color:gray;'>
+
+AI-powered Bank Fraud Detection System to identify suspicious transactions in real time
+
+</p>
+""",
+unsafe_allow_html=True
 )
 
 st.divider()
 
 # Define user inputs    
 hour = st.slider("Transaction Hour",min_value=0,max_value=23,value=12)
+st.divider()
+
 transaction_type = st.selectbox("Transaction Type",["PAYMENT","TRANSFER","CASH_OUT","CASH_IN","DEBIT"])
-amount = st.number_input("Transaction Amount", min_value=0.0, value=1000.0)
-oldbalanceOrg = st.number_input("Old Sender Balance",min_value=0.0,value=0.0)
-newbalanceOrig = st.number_input("New Sender Balance",min_value=0.0,value=0.0)
-oldbalanceDest = st.number_input("Old Receiver Balance",min_value=0.0,value=0.0)
-newbalanceDest = st.number_input("New Receiver Balance",min_value=0.0, value=0.0)
+st.divider()
+
+st.markdown("Transaction Amount")
+amount = st.number_input("Total Amount", min_value=0.0, value=1000.0)
+st.divider()
+
+st.markdown("Sender Account")
+col3, col4 = st.columns(2)
+with col3:
+    oldbalanceOrg = st.number_input(
+        "Balance Before",
+        min_value=0.0,
+        value=0.0,
+        step=100.0,
+        format="%.2f",
+        key="sender_before"
+    )
+with col4:
+    newbalanceOrig = st.number_input(
+        "Balance After",
+        min_value=0.0,
+        value=0.0,
+        step=100.0,
+        format="%.2f",
+        key="sender_after"
+    )
+st.divider()
+
+st.markdown("Receiver Account")
+col5, col6 = st.columns(2)
+with col5:
+    oldbalanceDest = st.number_input(
+        "Balance Before",
+        min_value=0.0,
+        value=0.0,
+        step=100.0,
+        format="%.2f",
+        key="receiver_before"
+    )
+with col6:
+    newbalanceDest = st.number_input(
+        "Balance After",
+        min_value=0.0,
+        value=0.0,
+        step=100.0,
+        format="%.2f",
+        key="receiver_after"
+    )
+st.divider() 
 
 # Prediction button 
 if st.button("Predict Fraud"): 

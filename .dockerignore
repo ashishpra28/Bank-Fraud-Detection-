@@ -1,0 +1,15 @@
+.venv
+.git
+__pycache__
+.ipynb_checkpoints
+
+data
+experiments
+
+*.csv
+
+plots
+
+README.md
+notes
+notes2 
